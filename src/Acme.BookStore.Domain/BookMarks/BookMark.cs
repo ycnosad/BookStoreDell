@@ -9,6 +9,7 @@ namespace Acme.BookStore.BookMarks
 {
     public class BookMark:AuditedAggregateRoot<Guid>
     {
+        public int MyProperty { get; set; }
         public Guid BookId { get; set; }
         public string BookName { get; set; }
         public int MarkPage { get; set; }
