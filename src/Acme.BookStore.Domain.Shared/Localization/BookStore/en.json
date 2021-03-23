@@ -35,6 +35,19 @@
     "AuthorDeletionConfirmationMessage": "Are you sure to delete the author '{0}'?",
     "BirthDate": "Birth date",
     "NewAuthor": "New author",
+
+    "Menu:BookMarks": "BookMarks",
+    "BookMarkDeletionConfirmationMessage": "Are you sure to delete the BookMark '{0}'?",
+    "NewBookMark": "New Bookmark",
+    "Permission:BookMarks": "BookMark Management",
+    "Permission:BookMarks.Create": "Creating new bookMark",
+    "Permission:BookMarks.Edit": "Editing the bookMark",
+    "Permission:BookMarks.Delete": "Deleting the bookMark",
+    "BookName": "Book Name",
+    "MarkPage": "Mark Page",
+    "MarkAnnotation": "Mark Annotation",
+
+
     "Enum:BookType:0": "Undefined",
     "Enum:BookType:1": "Adventure",
     "Enum:BookType:2": "Biography",

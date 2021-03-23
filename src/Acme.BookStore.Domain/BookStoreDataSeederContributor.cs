@@ -20,11 +20,14 @@ namespace Acme.BookStore
         public BookStoreDataSeederContributor(
             IRepository<Book, Guid> bookRepository,
             IAuthorRepository authorRepository,
-            AuthorManager authorManager)
+            AuthorManager authorManager,
+            IRepository<BookMark,Guid> bookMarkRepository
+            )
         {
             _bookRepository = bookRepository;
             _authorRepository = authorRepository;
             _authorManager = authorManager;
+            _bookMarkRepository = bookMarkRepository;
         }
 
         public async Task SeedAsync(DataSeedContext context)
@@ -74,8 +77,8 @@ namespace Acme.BookStore
                 autoSave: true
             );
 
-            Guid guid1 = new Guid("b1212a6e-1b76-2cc3-7607-39fb50f1127d");
-            Guid guid2 = new Guid("a408b8fd-0b15-f7f3-f439-39fb50f112ac");
+            Guid guid1 = new Guid("4296e711-9e1b-84b9-7c33-39fb7023c6f5");
+            Guid guid2 = new Guid("d28db219-54dc-c2b4-c787-39fb7023c721");
             await _bookMarkRepository.InsertAsync(
                 new BookMark
                 {

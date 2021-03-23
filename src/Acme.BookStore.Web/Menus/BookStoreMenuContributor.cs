@@ -69,6 +69,16 @@ namespace Acme.BookStore.Web.Menus
                     url: "/Authors"
                 ));
             }
+
+            if (await context.IsGrantedAsync(BookStorePermissions.BookMarks.Default))
+            {
+                bookStoreMenu.AddItem(new ApplicationMenuItem(
+                    "BooksStore.BookMarks",
+                    l["Menu:BookMarks"],
+                    url: "/BookMarks"
+                ));
+            }
+                
         }
     }
 }

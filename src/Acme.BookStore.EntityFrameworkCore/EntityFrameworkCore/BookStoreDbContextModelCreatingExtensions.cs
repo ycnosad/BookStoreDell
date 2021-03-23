@@ -51,7 +51,7 @@ namespace Acme.BookStore.EntityFrameworkCore
                 b.ToTable(BookStoreConsts.DbTablePrefix + "BookMarks",
                     BookStoreConsts.DbSchema);
                 b.ConfigureByConvention();
-                b.Property(x => x.BookId).IsRequired();
+                //b.Property(x => x.BookId).IsRequired();
                 b.HasOne<Book>().WithMany().HasForeignKey(x => x.BookId);
             });
         }

@@ -31,6 +31,15 @@ namespace Acme.BookStore.Permissions
             authorsPermission.AddChild(
                 BookStorePermissions.Authors.Delete, L("Permission:Authors.Delete"));
 
+            var bookMarksPermission = bookStoreGroup.AddPermission(
+                BookStorePermissions.BookMarks.Default, L("Permission:BookMarks"));
+            bookMarksPermission.AddChild(
+                BookStorePermissions.BookMarks.Create, L("Permission:BookMarks.Create"));
+            bookMarksPermission.AddChild(
+                BookStorePermissions.BookMarks.Edit, L("Permission:BookMarks.Edit"));
+            bookMarksPermission.AddChild(
+                BookStorePermissions.BookMarks.Delete, L("Permission:BookMarks.Delete"));
+
         }
 
         private static LocalizableString L(string name)
