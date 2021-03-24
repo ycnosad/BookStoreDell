@@ -52,7 +52,7 @@ namespace Acme.BookStore.EntityFrameworkCore
                     BookStoreConsts.DbSchema);
                 b.ConfigureByConvention();
                 //b.Property(x => x.BookId).IsRequired();
-                b.HasOne<Book>().WithMany().HasForeignKey(x => x.BookId);
+                b.HasOne<Book>().WithMany().HasForeignKey(x => x.BookId).IsRequired();
             });
         }
     }

@@ -90,6 +90,10 @@ namespace Acme.BookStore.Web
                 options.Conventions.AuthorizePage("/Books/Index", BookStorePermissions.Books.Default);
                 options.Conventions.AuthorizePage("/Books/CreateModal", BookStorePermissions.Books.Create);
                 options.Conventions.AuthorizePage("/Books/EditModal", BookStorePermissions.Books.Edit);
+
+                options.Conventions.AuthorizePage("/BookMarks/Index", BookStorePermissions.BookMarks.Default);
+                options.Conventions.AuthorizePage("/BookMarks/CreateModal", BookStorePermissions.BookMarks.Create);
+                options.Conventions.AuthorizePage("/BookMarks/EditModal", BookStorePermissions.BookMarks.Edit);
             });
         }
 

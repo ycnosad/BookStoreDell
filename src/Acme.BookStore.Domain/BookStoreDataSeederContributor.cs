@@ -53,29 +53,29 @@ namespace Acme.BookStore
                 )
             );
 
-            await _bookRepository.InsertAsync(
-                new Book
-                {
-                    AuthorId = orwell.Id, // SET THE AUTHOR
-                    Name = "1984",
-                    Type = BookType.Dystopia,
-                    PublishDate = new DateTime(1949, 6, 8),
-                    Price = 19.84f
-                },
-                autoSave: true
-            );
+            //await _bookRepository.InsertAsync(
+            //    new Book
+            //    {
+            //        AuthorId = orwell.Id, // SET THE AUTHOR
+            //        Name = "1984",
+            //        Type = BookType.Dystopia,
+            //        PublishDate = new DateTime(1949, 6, 8),
+            //        Price = 19.84f
+            //    },
+            //    autoSave: true
+            //);
 
-            await _bookRepository.InsertAsync(
-                new Book
-                {
-                    AuthorId = douglas.Id, // SET THE AUTHOR
-                    Name = "The Hitchhiker's Guide to the Galaxy",
-                    Type = BookType.ScienceFiction,
-                    PublishDate = new DateTime(1995, 9, 27),
-                    Price = 42.0f
-                },
-                autoSave: true
-            );
+            //await _bookRepository.InsertAsync(
+            //    new Book
+            //    {
+            //        AuthorId = douglas.Id, // SET THE AUTHOR
+            //        Name = "The Hitchhiker's Guide to the Galaxy",
+            //        Type = BookType.ScienceFiction,
+            //        PublishDate = new DateTime(1995, 9, 27),
+            //        Price = 42.0f
+            //    },
+            //    autoSave: true
+            //);
 
             Guid guid1 = new Guid("4296e711-9e1b-84b9-7c33-39fb7023c6f5");
             Guid guid2 = new Guid("d28db219-54dc-c2b4-c787-39fb7023c721");
