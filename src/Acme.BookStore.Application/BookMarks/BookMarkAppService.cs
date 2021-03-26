@@ -38,7 +38,7 @@ namespace Acme.BookStore.BookMarks
             var books = await _bookRepository.GetListAsync();
             return new ListResultDto<BookLookupDto> (ObjectMapper.Map<List<Book>, List<BookLookupDto>>(books));
         }
-
+        //这里就是复制下来的内容
         public override async Task<PagedResultDto<BookMarkDTO>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
             //Set a default sorting, if not provided
