@@ -60,47 +60,47 @@ namespace Acme.BookStore.Books
             return bookDto;
         }
 
-        public override async Task<PagedResultDto<BookDto>> GetListAsync(PagedAndSortedResultRequestDto input)
-        {
-            //Set a default sorting, if not provided
-            if (input.Sorting.IsNullOrWhiteSpace())
+            public override async Task<PagedResultDto<BookDto>> GetListAsync(PagedAndSortedResultRequestDto input)
             {
-                input.Sorting = nameof(Book.Name);
+                //Set a default sorting, if not provided
+                if (input.Sorting.IsNullOrWhiteSpace())
+                {
+                    input.Sorting = nameof(Book.Name);
+                }
+
+                //Get the IQueryable<Book> from the repository
+                var queryable = await Repository.GetQueryableAsync();
+
+                //Prepare a query to join books and authors
+                var query = from book in queryable
+                            join author in _authorRepository on book.AuthorId equals author.Id
+                            orderby input.Sorting //TODO: Can not sort like that!
+                            select new { book, author };
+
+                //Paging
+                query = query
+                    .Skip(input.SkipCount)
+                    .Take(input.MaxResultCount);
+
+                //Execute the query and get a list
+                var queryResult = await AsyncExecuter.ToListAsync(query);
+
+                //Convert the query result to a list of BookDto objects
+                var bookDtos = queryResult.Select(x =>
+                {
+                    var bookDto = ObjectMapper.Map<Book, BookDto>(x.book);
+                    bookDto.AuthorName = x.author.Name;
+                    return bookDto;
+                }).ToList();
+
+                //Get the total count with another query
+                var totalCount = await Repository.GetCountAsync();
+
+                return new PagedResultDto<BookDto>(
+                    totalCount,
+                    bookDtos
+                );
             }
-
-            //Get the IQueryable<Book> from the repository
-            var queryable = await Repository.GetQueryableAsync();
-
-            //Prepare a query to join books and authors
-            var query = from book in queryable
-                        join author in _authorRepository on book.AuthorId equals author.Id
-                        orderby input.Sorting //TODO: Can not sort like that!
-                        select new { book, author };
-
-            //Paging
-            query = query
-                .Skip(input.SkipCount)
-                .Take(input.MaxResultCount);
-
-            //Execute the query and get a list
-            var queryResult = await AsyncExecuter.ToListAsync(query);
-
-            //Convert the query result to a list of BookDto objects
-            var bookDtos = queryResult.Select(x =>
-            {
-                var bookDto = ObjectMapper.Map<Book, BookDto>(x.book);
-                bookDto.AuthorName = x.author.Name;
-                return bookDto;
-            }).ToList();
-
-            //Get the total count with another query
-            var totalCount = await Repository.GetCountAsync();
-
-            return new PagedResultDto<BookDto>(
-                totalCount,
-                bookDtos
-            );
-        }
 
         public async Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync()
         {
